@@ -19,7 +19,7 @@ OBJECTS = $(patsubst %.c,$(ODIR)/%.o,$(SOURCES))
 
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 RM = rm -rf
 
 $(ODIR)/%.o: $(SDIR)%.c

@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:32:55 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/05/16 17:04:24 by muribe-l         ###   ########.fr       */
+/*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
+/*   Updated: 2024/05/16 17:05:25 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	main(int argc, char **argv)
+int	ft_atoi(const char *str)
 {
-	t_philo	philo;
+	int	z;
+	int	sign;
 
-	if (!parse(argc, argv, &philo))
-		return (1);
-	
-	return (0);
-}
-
-/*
-void	*bobi(void *bebi)
-{
-	while (1)
+	z = 0;
+	sign = 1;
+	while (*str == ' ' || *str == '\t' || *str == '\n'
+		|| *str == '\v' || *str == '\r' || *str == '\f')
+		str++;
+	if (*str == '-')
 	{
-		sleep(1);
-		printf("bibibib%s\n", (char *)bebi);
+		sign = -1;
+		str++;
 	}
-	
-	return (NULL);
+	else if (*str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		z *= 10;
+		z += *str - '0';
+		str++;
+	}
+	return (z * sign);
 }
-
-	pthread_t	tid;
-	pthread_create(&tid, NULL, bobi, argv[argc - 1]);
-	pthread_join(tid, NULL);
-*/

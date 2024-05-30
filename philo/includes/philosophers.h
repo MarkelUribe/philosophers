@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/05/16 17:04:20 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:44:18 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+
+# define PHILO_MAX	200
 
 # define ADMIN		"\033[31m"
 # define ORANGE		"\033[38;5;202m"
@@ -30,7 +32,7 @@
 # define MAGENTA	"\033[35m"
 # define RESET		"\033[0m"
 
-typedef struct t_philo
+typedef struct s_philo
 {
 	int n_philo;
 	int time_to_die;

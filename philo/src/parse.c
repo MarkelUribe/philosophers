@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/05/17 14:26:04 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:44:25 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ int	parse(int argc, char **argv, t_philo *philo)
 		printarguments();
 		return (0);
 	}
-	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > 200)
+	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > PHILO_MAX)
 	{
 		printf(ADMIN"Error: number of philosophers must be between 1 and 200\n"RESET);
 		printarguments();
 		return (0);
 	}
-	if (ft_atoi(argv[2]))
+	if (ft_atoi(argv[2]) <= 0 || ft_atoi(argv[3]) <= 0 || ft_atoi(argv[4]) <= 0)
 	{
-
+		printf(ADMIN"Error: args must be bigger than 0\n"RESET);
+		printarguments();
+		return (0);
 	}
 	init_values(argc, argv, philo);
 	return (1);

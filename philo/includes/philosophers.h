@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/05/30 16:44:18 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:06:05 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,24 @@
 
 typedef struct s_philo
 {
-	int n_philo;
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int times_philo_must_eat;
+	pthread_t	thread;
+	int			n_philo;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			times_philo_must_eat;
 }	t_philo;
 
-int	parse(int argc, char **argv, t_philo *philo);
+typedef struct s_program
+{
+	int				dead_flag;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	write_lock;
+	t_philo			*philos;
+}	t_program;
+
+int	parse(int argc, char **argv, t_program *program);
 int	ft_atoi(const char *str);
 
 #endif

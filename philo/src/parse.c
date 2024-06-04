@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/05/30 16:44:25 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:04:53 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void init_values(int argc, char **argv, t_philo *philo)
 		philo->times_philo_must_eat = -1;
 }
 
-int	parse(int argc, char **argv, t_philo *philo)
+int	parse(int argc, char **argv, t_program *program)
 {
 	if (argc != 5 || argc != 6)
 	{
@@ -53,6 +53,6 @@ int	parse(int argc, char **argv, t_philo *philo)
 		printarguments();
 		return (0);
 	}
-	init_values(argc, argv, philo);
+	//init_values(argc, argv, philo);
 	return (1);
 }

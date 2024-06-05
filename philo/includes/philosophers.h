@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/05 14:19:18 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:27:30 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ typedef struct s_data
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
+	size_t			times_philo_must_eat;
 }	t_data;
+
+/*
+initialize (&data)
+en cada philo:
+	philo->data = &data;
+*/
 
 typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
-	size_t			times_philo_must_eat;
 	pthread_mutex_t	fork;
 	int				dead;
 	t_data			*data;

@@ -6,12 +6,12 @@
 #    By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 13:01:36 by muribe-l          #+#    #+#              #
-#    Updated: 2024/06/05 13:29:29 by muribe-l         ###   ########.fr        #
+#    Updated: 2024/06/05 16:37:06 by muribe-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SOURCES = main.c parse.c utils.c actions.c
+SOURCES = main.c parse.c utils.c actions.c destroy.c
 SDIR = ./src/
 ODIR = ./src/obj
 

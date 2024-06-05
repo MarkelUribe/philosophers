@@ -6,12 +6,15 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/05 14:26:29 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:30:00 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
+/* 
+Prints the formated text that shows the order the arguments must follow.
+ */
 static void	printarguments()
 {
 	printf(	MAGENTA"int number_of_philosophers\n"
@@ -21,41 +24,49 @@ static void	printarguments()
 			AQUA"int number_of_times_each_philosopher_must_eat (optinal)\n"RESET);
 }
 
-void	init_forks(pthread_mutex_t *forks, int n_philo)
+/* Creates, initializes and assigns fork mutex to philo */
+static void	add_mutex(t_philo *philo)
+{
+	pthread_mutex_t	fork;
+	
+	pthread_mutex_init(&fork, NULL);
+	philo->fork = fork;
+}
+
+/* Initializes all the philosophers. */
+void	init_philos(t_philo *philos, t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < n_philo)
+	while (i < data->n_philo)
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		philos[i].id = i + 1;
+		philos[i].dead = 0;
+		philos[i].data = data;
+		add_mutex(&philos[i]);
 		i++;
 	}
 }
 
-void	init_program()
+/* 
+Inserts the parameters into the data structure instance, 
+which every philo will point to.
+*/
+void	init_data(int argc, char **argv, t_data *data)
 {
-	
-}
-
-void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks, char **argv)
-{
-
-}
-
-static void	init_values(int argc, char **argv, t_philo *philo)
-{
-	philo->n_philo = ft_atoi(argv[1]);
-	philo->time_to_die = ft_atoi(argv[2]);
-	philo->time_to_eat = ft_atoi(argv[3]);
-	philo->time_to_sleep = ft_atoi(argv[4]);
+	data->n_philo = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		philo->times_philo_must_eat = ft_atoi(argv[5]);
+		data->times_philo_must_eat = ft_atoi(argv[5]);
 	else
-		philo->times_philo_must_eat = -1;
+		data->times_philo_must_eat = -1;
 }
 
-int	parse(int argc, char **argv, t_program *program)
+/* Checks that all the parameters are correct */
+int	parse(int argc, char **argv)
 {
 	if (argc != 5 || argc != 6)
 	{
@@ -75,6 +86,5 @@ int	parse(int argc, char **argv, t_program *program)
 		printarguments();
 		return (0);
 	}
-	//init_values(argc, argv, philo);
 	return (1);
 }

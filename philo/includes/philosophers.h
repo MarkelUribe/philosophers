@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/05 14:27:30 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:59:23 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,31 @@
 
 typedef struct s_data
 {
+	int				n_philo;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			times_philo_must_eat;
 }	t_data;
 
-/*
-initialize (&data)
-en cada philo:
-	philo->data = &data;
-*/
-
 typedef struct s_philo
 {
 	pthread_t		thread;
-	int				id;
 	pthread_mutex_t	fork;
+	int				id;
+	int				eating;
+	int				sleeping;
+	int				thinking;
 	int				dead;
 	t_data			*data;
-	t_philo			*next;
 }	t_philo;
 
-typedef struct s_program
-{
-	t_philo			*philos;
-
-}	t_program;
-
-int		parse(int argc, char **argv, t_program *program);
-int		ft_atoi(const char *str);
-int		ft_strlen(char *str);
-void	init_forks(pthread_mutex_t *forks, int n_philo);
+int				parse(int argc, char **argv);
+int				ft_atoi(const char *str);
+int				ft_strlen(char *str);
+void			init_data(int argc, char **argv, t_data *data);
+void			init_philos(t_philo *philos, t_data *data);
+void			destroy_all(t_philo *philos, t_data *data)
 
 #endif
 

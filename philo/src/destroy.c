@@ -1,42 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:32:55 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/05 16:14:00 by muribe-l         ###   ########.fr       */
+/*   Created: 2024/06/05 16:35:24 by muribe-l          #+#    #+#             */
+/*   Updated: 2024/06/05 16:59:14 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	main(int argc, char **argv)
+void	destroy_all(t_philo *philos, t_data *data)
 {
-	t_philo	philos[PHILO_MAX];
-	t_data	data;
+	int i;
 	
-	if (!parse(argc, argv))
-		return (1);
-	init_data(argc, argv, &data);
-	init_philos(philos, &data);
-	return (0);
-}
-
-/*
-void	*bobi(void *bebi)
-{
-	while (1)
+	i = 0;
+	while (i < data->n_philo)
 	{
-		sleep(1);
-		printf("bibibib%s\n", (char *)bebi);
+		if (&philos[i].fork)
+			pthread_mutex_destroy(&philos[i].fork);
+		if (&philos[i].thread)
+			pthread_mutex_destroy(&philos[i].thread);
+		i++;
 	}
-	
-	return (NULL);
 }
-
-	pthread_t	tid;
-	pthread_create(&tid, NULL, bobi, argv[argc - 1]);
-	pthread_join(tid, NULL);
-*/

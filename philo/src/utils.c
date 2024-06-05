@@ -6,11 +6,23 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/05/21 18:31:46 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:31:30 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	if (str == NULL)
+		return (0);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 int	ft_atoi(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/04 19:06:05 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:19:18 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,50 @@
 # define MAGENTA	"\033[35m"
 # define RESET		"\033[0m"
 
+typedef struct s_data
+{
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+}	t_data;
+
 typedef struct s_philo
 {
-	pthread_t	thread;
-	int			n_philo;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			times_philo_must_eat;
+	pthread_t		thread;
+	int				id;
+	size_t			times_philo_must_eat;
+	pthread_mutex_t	fork;
+	int				dead;
+	t_data			*data;
+	t_philo			*next;
 }	t_philo;
 
 typedef struct s_program
 {
-	int				dead_flag;
-	pthread_mutex_t	dead_lock;
-	pthread_mutex_t	meal_lock;
-	pthread_mutex_t	write_lock;
 	t_philo			*philos;
+
 }	t_program;
 
-int	parse(int argc, char **argv, t_program *program);
-int	ft_atoi(const char *str);
+int		parse(int argc, char **argv, t_program *program);
+int		ft_atoi(const char *str);
+int		ft_strlen(char *str);
+void	init_forks(pthread_mutex_t *forks, int n_philo);
 
 #endif
+
+/*
+
+pthread_mutex_lock(philo->&mutex)
+if (palmaste)
+	f_muerte();
+pthread_mutex_lock(philo->next->&mutex)
+if (palmaste)
+	f_muerte();
+
+ == > DENTRO DE MUTEX LOCK
+	if (*mutex = 1)
+		*mutex = 0;
+	else
+		wait();
+
+*/

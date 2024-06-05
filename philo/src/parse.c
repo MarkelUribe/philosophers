@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/04 19:04:53 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:26:29 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,29 @@ static void	printarguments()
 			AQUA"int number_of_times_each_philosopher_must_eat (optinal)\n"RESET);
 }
 
-static void init_values(int argc, char **argv, t_philo *philo)
+void	init_forks(pthread_mutex_t *forks, int n_philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < n_philo)
+	{
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
+}
+
+void	init_program()
+{
+	
+}
+
+void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks, char **argv)
+{
+
+}
+
+static void	init_values(int argc, char **argv, t_philo *philo)
 {
 	philo->n_philo = ft_atoi(argv[1]);
 	philo->time_to_die = ft_atoi(argv[2]);

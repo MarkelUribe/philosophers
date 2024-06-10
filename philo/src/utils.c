@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/05 16:22:38 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:11:06 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	return (z * sign);
+}
+
+void	print_message(char *str, t_philo *philo, int id)
+{
+	size_t	time;
+
+	printf("%zu %d %s\n", time, id, str);
 }

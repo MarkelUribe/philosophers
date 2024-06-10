@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:32:55 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/05 16:14:00 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:30:51 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 		return (1);
 	init_data(argc, argv, &data);
 	init_philos(philos, &data);
+	init_threads(philos, &data);
 	return (0);
 }
 

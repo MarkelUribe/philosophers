@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/05 16:59:23 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/10 19:08:49 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_data
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			times_philo_must_eat;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	dead_mutex;
 }	t_data;
 
 typedef struct s_philo
@@ -58,7 +60,10 @@ int				ft_atoi(const char *str);
 int				ft_strlen(char *str);
 void			init_data(int argc, char **argv, t_data *data);
 void			init_philos(t_philo *philos, t_data *data);
-void			destroy_all(t_philo *philos, t_data *data)
+void			destroy_all(char *error, t_philo *philos, t_data *data);
+void			routine(t_philo *philo);
+void			init_threads(t_philo *philos, t_data *data);
+void		print_message(char *str, t_philo *philo, int id);
 
 #endif
 

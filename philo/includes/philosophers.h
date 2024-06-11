@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/10 19:08:49 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:27:50 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 # define PHILO_MAX	200
 
@@ -35,6 +36,7 @@
 typedef struct s_data
 {
 	int				n_philo;
+	size_t			start_time;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
@@ -48,6 +50,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	fork;
 	int				id;
+	size_t			last_meal;
 	int				eating;
 	int				sleeping;
 	int				thinking;
@@ -63,7 +66,9 @@ void			init_philos(t_philo *philos, t_data *data);
 void			destroy_all(char *error, t_philo *philos, t_data *data);
 void			routine(t_philo *philo);
 void			init_threads(t_philo *philos, t_data *data);
-void		print_message(char *str, t_philo *philo, int id);
+void			print_message(char *str, t_philo *philo, int id);
+size_t			get_time(void);
+int				is_dead(t_philo *philo);
 
 #endif
 

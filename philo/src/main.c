@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:32:55 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/10 16:30:51 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:17:47 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_philo	philos[PHILO_MAX];
 	t_data	data;
-	
+
 	if (!parse(argc, argv))
 		return (1);
 	init_data(argc, argv, &data);

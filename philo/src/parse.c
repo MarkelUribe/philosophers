@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/10 16:48:51 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:19:35 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 /* 
 Prints the formated text that shows the order the arguments must follow.
  */
-static void	printarguments()
+static void	printarguments(void)
 {
-	printf(	MAGENTA"int number_of_philosophers\n"
-			ORANGE"int time_to_die\n"
-			YELLOW"int time_to_eat\n"
-			GREEN"int time_to_sleep\n"
-			AQUA"int number_of_times_each_philosopher_must_eat (optinal)\n"RESET);
+	printf(MAGENTA"int number_of_philosophers\n"
+		ORANGE"int time_to_die\n"
+		YELLOW"int time_to_eat\n"
+		GREEN"int time_to_sleep\n"
+		AQUA"int number_of_times_each_philosopher_must_eat (optinal)\n"RESET);
 }
 
 /* Checks that all the parameters are correct */
@@ -35,7 +35,9 @@ int	parse(int argc, char **argv)
 	}
 	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > PHILO_MAX)
 	{
-		printf(ADMIN"Error: number of philosophers must be between 1 and 200\n"RESET);
+		printf(
+			ADMIN"Error: number of philosophers must be between 1 and 200\n"
+			RESET);
 		printarguments();
 		return (0);
 	}

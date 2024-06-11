@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:35:24 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/10 18:41:19 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:20:14 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /* Destroy all the elements and stop the program */
 void	destroy_all(char *error, t_philo *philos, t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	write(2, error, ft_strlen(error));
 	while (i < data->n_philo)

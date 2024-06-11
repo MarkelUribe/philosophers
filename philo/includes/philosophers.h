@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/11 15:27:50 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:43:04 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,26 @@
 typedef struct s_data
 {
 	int				n_philo;
+	int				dinner_ended;
+	pthread_t		monitor;
+	t_philo			*fist_philo;
 	size_t			start_time;
 	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	size_t			times_philo_must_eat;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	table_mutex;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	dead_mutex;
 }	t_data;
 
 typedef struct s_philo
 {
 	pthread_t		thread;
-	pthread_mutex_t	fork;
+	pthread_mutex_t	meal_mutex;
 	int				id;
+	int				n_meals;
 	size_t			last_meal;
-	int				eating;
-	int				sleeping;
-	int				thinking;
 	int				dead;
 	t_data			*data;
 }	t_philo;
@@ -61,30 +63,15 @@ typedef struct s_philo
 int				parse(int argc, char **argv);
 int				ft_atoi(const char *str);
 int				ft_strlen(char *str);
-void			init_data(int argc, char **argv, t_data *data);
+void			init_data(int argc, char **argv, t_data *data, t_philo *philos);
 void			init_philos(t_philo *philos, t_data *data);
 void			destroy_all(char *error, t_philo *philos, t_data *data);
 void			routine(t_philo *philo);
+void			monitor(t_data *data);
 void			init_threads(t_philo *philos, t_data *data);
 void			print_message(char *str, t_philo *philo, int id);
 size_t			get_time(void);
 int				is_dead(t_philo *philo);
+void			ft_usleep(int ms);
 
 #endif
-
-/*
-
-pthread_mutex_lock(philo->&mutex)
-if (palmaste)
-	f_muerte();
-pthread_mutex_lock(philo->next->&mutex)
-if (palmaste)
-	f_muerte();
-
- == > DENTRO DE MUTEX LOCK
-	if (*mutex = 1)
-		*mutex = 0;
-	else
-		wait();
-
-*/

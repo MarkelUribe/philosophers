@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+         #
+#    By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 13:01:36 by muribe-l          #+#    #+#              #
-#    Updated: 2024/06/10 16:48:20 by muribe-l         ###   ########.fr        #
+#    Updated: 2024/06/11 17:16:10 by muribe-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-SOURCES = main.c parse.c utils.c actions.c destroy.c init.c
+SOURCES = main.c parse.c utils.c actions.c destroy.c init.c monitor.c
 SDIR = ./src/
 ODIR = ./src/obj
 

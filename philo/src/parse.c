@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muribe-l <muribe-l@student.42.fr>          +#+  +:+       +#+        */
+/*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/11 14:19:35 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/11 18:14:52 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-/* 
-Prints the formated text that shows the order the arguments must follow.
- */
+/* Prints the formated text that shows the order the arguments must follow. */
 static void	printarguments(void)
 {
 	printf(MAGENTA"int number_of_philosophers\n"

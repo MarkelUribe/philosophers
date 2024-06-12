@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/12 13:55:47 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:54:49 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	print_message(char *str, t_philo *philo, int id)
 
 	pthread_mutex_lock(&philo->data->print_mutex);
 	time = get_time() - philo->data->start_time;
-	printf("|%zu| %d %s\n", time, id, str);
+	printf("|%zu|\t%d %s\n", time, id, str);
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 

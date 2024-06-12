@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/11 19:43:04 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:53:30 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <string.h>
 
 # define PHILO_MAX	200
 
@@ -38,7 +39,6 @@ typedef struct s_data
 	int				n_philo;
 	int				dinner_ended;
 	pthread_t		monitor;
-	t_philo			*fist_philo;
 	size_t			start_time;
 	size_t			time_to_die;
 	size_t			time_to_eat;
@@ -64,10 +64,10 @@ int				parse(int argc, char **argv);
 int				ft_atoi(const char *str);
 int				ft_strlen(char *str);
 void			init_data(int argc, char **argv, t_data *data, t_philo *philos);
-void			init_philos(t_philo *philos, t_data *data);
+void			init_philos(t_philo **philos, t_data *data);
 void			destroy_all(char *error, t_philo *philos, t_data *data);
-void			routine(t_philo *philo);
-void			monitor(t_data *data);
+void			*routine(void *philo);
+void			*monitor(void *philos);
 void			init_threads(t_philo *philos, t_data *data);
 void			print_message(char *str, t_philo *philo, int id);
 size_t			get_time(void);

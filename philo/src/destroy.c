@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:35:24 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/12 14:03:34 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:36:47 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ void	destroy_all(char *error, t_philo *philos, t_data *data)
 	while (i < data->n_philo)
 	{
 		if (&data->forks[i])
+		{
 			pthread_mutex_destroy(&data->forks[i]);
+		}
 		if (&philos[i].meal_mutex)
 			pthread_mutex_destroy(&philos[i].meal_mutex);
 		i++;
@@ -32,5 +34,6 @@ void	destroy_all(char *error, t_philo *philos, t_data *data)
 		pthread_mutex_destroy(&data->print_mutex);
 	if (&data->table_mutex)
 		pthread_mutex_destroy(&data->table_mutex);
+	free(data->forks);
 	free(philos);
 }

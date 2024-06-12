@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/12 13:31:12 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:01:43 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	printarguments(void)
 /* Checks that all the parameters are correct */
 int	parse(int argc, char **argv)
 {
-	if (!(argc >= 2 && argc <= 6))
+	if (argc != 5 && argc != 6)
 	{
 		printf(ADMIN"Error: Invalid number of arguments\n"RESET);
 		printarguments();

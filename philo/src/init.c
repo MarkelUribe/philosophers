@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:48:08 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/12 14:09:47 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:56:39 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ void	init_data(int argc, char **argv, t_data *data, t_philo *philos)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->dinner_ended = 0;
+	if (argc == 6)
+		data->times_philo_must_eat = ft_atoi(argv[5]);
+	else
+		data->times_philo_must_eat = -1;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!data->forks)
 		destroy_all("Forks malloc error.", philos, data);
 	init_forks(data);
 	pthread_mutex_init(&data->print_mutex, NULL);
 	pthread_mutex_init(&data->table_mutex, NULL);
-	if (argc == 6)
-		data->times_philo_must_eat = ft_atoi(argv[5]);
-	else
-		data->times_philo_must_eat = -1;
 }

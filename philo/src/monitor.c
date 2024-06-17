@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: markel <markel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/12 16:56:29 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:31:50 by markel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,30 @@ int	everyone_ate(t_philo **philos)
 	int	i;
 	int	meals;
 
-	if ((*philos)->data->times_philo_must_eat == -1)
+	if ((int)(*philos)->data->times_philo_must_eat == -1)
 		return (0);
 	i = 0;
 	meals = 0;
 	while (i < (*philos)->data->n_philo)
 	{
-		if ((*philos)[i].n_meals >= (*philos)->data->times_philo_must_eat)
+		if ((*philos)[i].n_meals >= (int)(*philos)->data->times_philo_must_eat)
 			meals++;
 		i++;
 	}
 	if (meals == (*philos)->data->n_philo)
 	{
-		printf("Every philosopher eat %d times\n",
-			(*philos)->data->times_philo_must_eat);
+		printf("Every philosopher eat %dtimes\n",
+			(int)(*philos)->data->times_philo_must_eat);
 		return (1);
 	}
 	return (0);
 }
 
-/* Monitors that all the philosophers are alive */
-void	*monitor(void **philos)
+/* Iterate all philosophers */
+void	iter_philos(t_philo **p)
 {
-	int		i;
-	t_philo	**p;
-
-	p = (t_philo **)philos;
+	int	i;
+	
 	while (!dinner_ended((*p)[0].data))
 	{
 		i = -1;
@@ -82,5 +80,11 @@ void	*monitor(void **philos)
 			}
 		}
 	}
+}
+
+/* Monitors that all the philosophers are alive */
+void	*monitor(void *philos)
+{
+	iter_philos((t_philo **)&philos);
 	return (NULL);
 }

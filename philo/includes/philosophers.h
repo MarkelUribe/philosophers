@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: markel <markel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/12 16:28:30 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:08:12 by markel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			init_data(int argc, char **argv, t_data *data, t_philo *philos);
 void			init_philos(t_philo **philos, t_data *data);
 void			destroy_all(char *error, t_philo *philos, t_data *data);
 void			*routine(void *philo);
-void			*monitor(void **philos);
+void			*monitor(void *philos);
 void			init_threads(t_philo *philos, t_data *data);
 void			print_message(char *str, t_philo *philo, int id);
 size_t			get_time(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: markel <markel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:29:15 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/12 16:42:20 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:38:47 by markel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*routine(void *philo)
 
 	p = (t_philo *)philo;
 	if (p->id % 2 == 0)
-		usleep(1);
+		ft_usleep(p->data->time_to_eat / 2);
 	while (!is_dead(p) && !dinner_ended(p->data))
 	{
 		philo_eat(p);

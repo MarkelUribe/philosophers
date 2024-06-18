@@ -22,3 +22,4 @@ jspm_packages/
 build/
 out/
 */a.out
+*.o

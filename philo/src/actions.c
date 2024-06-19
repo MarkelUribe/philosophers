@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: markel <markel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:29:15 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/18 16:38:47 by markel           ###   ########.fr       */
+/*   Updated: 2024/06/19 16:31:27 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	philo_sleep(t_philo *philo)
 /* Prints that is thinking and waits to take a fork */
 void	philo_think(t_philo *philo)
 {
-	if (dinner_ended(philo->data))
+	if (is_dead(philo) || dinner_ended(philo->data))
 		return ;
 	print_message("is thinking", philo, philo->id);
 }
@@ -67,7 +67,11 @@ void	*routine(void *philo)
 	while (!is_dead(p) && !dinner_ended(p->data))
 	{
 		philo_eat(p);
+		if (is_dead(p) || dinner_ended(p->data))
+			break ;
 		philo_sleep(p);
+		if (is_dead(p) || dinner_ended(p->data))
+			break ;
 		philo_think(p);
 	}
 	return (NULL);

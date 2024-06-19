@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/19 20:58:02 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:28:21 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,25 @@ int	is_dead(t_philo *philo)
 }
 
 /* Returns 1 if every philo ate the specified minimum number by parameter */
-int	everyone_ate(t_philo **philos)
+int	everyone_ate(t_philo *philos, int n_philos)
 {
 	int	i;
 	int	meals;
 
-	if ((int)(*philos)->data->times_philo_must_eat == -1)
+	if ((int)philos->data->times_philo_must_eat == -1)
 		return (0);
 	i = 0;
 	meals = 0;
-	while (i < (*philos)->data->n_philo)
+	while (i < n_philos)
 	{
-		if ((*philos)[i].n_meals >= (int)(*philos)->data->times_philo_must_eat)
-		{
-			printf("%d\n", (*philos)[i].n_meals);
+		if (philos[i].n_meals >= (int)philos->data->times_philo_must_eat)
 			meals++;
-		}
-			
 		i++;
 	}
-	if (meals == (*philos)->data->n_philo)
+	if (meals == n_philos)
 	{
 		printf("Every philosopher eat at least %d times\n",
-			(int)(*philos)->data->times_philo_must_eat);
+			(int)philos->data->times_philo_must_eat);
 		return (1);
 	}
 	return (0);
@@ -75,7 +71,7 @@ void	*monitor(void *philos)
 	t_philo	*p;
 
 	p = (t_philo *)philos;
-	while (!dinner_ended(p->data) && !everyone_ate(&p))
+	while (!dinner_ended(p->data) && !everyone_ate(p, p->data->n_philo))
 		usleep(1);
 	return (NULL);
 }

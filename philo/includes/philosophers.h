@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/19 15:51:04 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:38:13 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ typedef struct s_philo
 int				parse(int argc, char **argv);
 int				ft_atoi(const char *str);
 int				ft_strlen(char *str);
-void			init_data(int argc, char **argv, t_data *data, t_philo *philos);
+void			init_data(int argc, char **argv, t_data *data);
 void			init_philos(t_philo **philos, t_data *data);
 void			destroy_all(char *error, t_philo *philos, t_data *data);
+void			destroy_data(char *error, t_data *data);
 void			*routine(void *philo);
 void			*monitor(void *philos);
 void			init_threads(t_philo *philos, t_data *data);

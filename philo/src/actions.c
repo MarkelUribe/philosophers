@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:29:15 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 09:40:47 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:55:50 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,5 @@ void	*routine(void *philo)
 			break ;
 		philo_think(p);
 	}
-	return (NULL);
+	return (philo);
 }

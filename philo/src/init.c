@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:48:08 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 09:29:12 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:38:08 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	init_philos(t_philo **philos, t_data *data)
 		(*philos)[i].data = data;
 		(*philos)[i].n_meals = 0;
 		(*philos)[i].last_meal = data->start_time;
-		pthread_mutex_init(&(*philos)[i].meal_mutex, NULL);
+		if (pthread_mutex_init(&(*philos)[i].meal_mutex, NULL) != 0)
+			destroy_all("Mutex init error", *philos, data);
 		i++;
 	}
 }
@@ -62,7 +63,8 @@ static void	init_forks(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 	{
-		pthread_mutex_init(&data->forks[i], NULL);
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			destroy_data("Mutex init error", data);
 		i++;
 	}
 }
@@ -71,7 +73,7 @@ static void	init_forks(t_data *data)
 Inserts the parameters into the data structure instance, 
 which every philo will point to and mallocs and starts the forks.
 */
-void	init_data(int argc, char **argv, t_data *data, t_philo *philos)
+void	init_data(int argc, char **argv, t_data *data)
 {
 	data->n_philo = ft_atoi(argv[1]);
 	data->start_time = get_time();
@@ -85,8 +87,10 @@ void	init_data(int argc, char **argv, t_data *data, t_philo *philos)
 		data->times_philo_must_eat = -1;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!data->forks)
-		destroy_all("Forks malloc error.", philos, data);
+		destroy_data("Forks malloc error.", data);
 	init_forks(data);
-	pthread_mutex_init(&data->print_mutex, NULL);
-	pthread_mutex_init(&data->table_mutex, NULL);
+	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
+		destroy_data("Mutex init error", data);
+	if (pthread_mutex_init(&data->table_mutex, NULL) != 0)
+		destroy_data("Mutex init error", data);
 }

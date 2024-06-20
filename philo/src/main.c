@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:32:55 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 09:29:59 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:38:17 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	philos = NULL;
 	if (!parse(argc, argv))
 		return (1);
-	init_data(argc, argv, &data, philos);
+	init_data(argc, argv, &data);
 	init_philos(&philos, &data);
 	init_threads(philos, &data);
 	destroy_all(NULL, philos, &data);

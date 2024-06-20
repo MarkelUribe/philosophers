@@ -6,13 +6,13 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:29:15 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/19 21:20:55 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/20 09:40:47 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-/* Waits to lock both forks and eats */
+/* Waits until both forks are free and eats */
 void	philo_eat(t_philo *philo)
 {
 	pthread_mutex_t	*l_fork;
@@ -35,6 +35,8 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->n_meals++;
 	pthread_mutex_unlock(&philo->meal_mutex);
+	if (is_dead(philo))
+		return;
 	pthread_mutex_unlock(l_fork);
 	pthread_mutex_unlock(r_fork);
 }

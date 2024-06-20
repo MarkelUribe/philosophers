@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/19 21:28:21 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/20 09:41:04 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_dead(t_philo *philo)
 		philo->dead = 1;
 		print_message(ADMIN"died"RESET, philo, philo->id);
 		pthread_mutex_lock(&philo->data->table_mutex);
-		printf("Dinner finished\n");
+		print_message("Dinner finished", philo, 0);
 		philo->data->dinner_ended = 1;
 		pthread_mutex_unlock(&philo->data->table_mutex);
 		return (pthread_mutex_unlock(&philo->meal_mutex), 1);
@@ -58,8 +58,10 @@ int	everyone_ate(t_philo *philos, int n_philos)
 	}
 	if (meals == n_philos)
 	{
+		pthread_mutex_lock(&philos->data->print_mutex);
 		printf("Every philosopher eat at least %d times\n",
 			(int)philos->data->times_philo_must_eat);
+		pthread_mutex_unlock(&philos->data->print_mutex);
 		return (1);
 	}
 	return (0);

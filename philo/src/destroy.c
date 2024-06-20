@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: markel <markel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:35:24 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/16 23:56:34 by markel           ###   ########.fr       */
+/*   Updated: 2024/06/20 09:15:45 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	destroy_all(char *error, t_philo *philos, t_data *data)
 			free(data->forks);
 		if (philos != NULL)
 			free(philos);
+	exit(1);
 }

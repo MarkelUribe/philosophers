@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:09:32 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 13:26:39 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/25 11:53:25 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	args_are_number(int argc, char **argv)
 	{
 		if (!ft_string_of_digits(argv[i]))
 		{
-			printf(ADMIN"Error: Invalid number of arguments\n"RESET);
+			printf(ADMIN"Error: The arguments must be integers\n"RESET);
 			printarguments();
 			return (0);
 		}

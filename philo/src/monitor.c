@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 13:56:00 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:04:07 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_dead(t_philo *philo)
 	return (pthread_mutex_unlock(&philo->meal_mutex), 0);
 }
 
-/* Returns 1 if every philo ate the specified minimum number by parameter */
+/* Returns 1 if every philo ate the specified minimum amount by parameter */
 int	everyone_ate(t_philo *philos, int n_philos)
 {
 	int	i;

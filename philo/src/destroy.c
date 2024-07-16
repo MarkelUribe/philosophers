@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:35:24 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 13:37:23 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:43:49 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	destroy_all(char *error, t_philo *philos, t_data *data)
 		free(data->forks);
 	if (philos != NULL)
 		free(philos);
+	if (data)
+		free(data);
 	exit(1);
 }
 

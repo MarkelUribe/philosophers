@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:48:08 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 13:38:08 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:59:37 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init_threads(t_philo *philos, t_data *data)
 			destroy_all("Philosopher thread creation error.", philos, data);
 		i++;
 	}
-	if (pthread_create(&data->monitor, NULL, monitor, &philos) != 0)
+	if (pthread_create(&data->monitor, NULL, monitor, &philos[0]) != 0)
 		destroy_all("Monitor thread creation error.", philos, data);
 	i = -1;
 	while (++i < data->n_philo)

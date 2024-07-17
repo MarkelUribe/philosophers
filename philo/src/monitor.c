@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/07/16 17:01:45 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:46:06 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	dinner_ended(t_data *data)
 int	is_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->meal_mutex);
-	if (philo->dead)
+	if (philo->dead || dinner_ended(philo->data))
 		return (pthread_mutex_unlock(&philo->meal_mutex), 1);
 	else if (get_time() - philo->last_meal >= philo->data->time_to_die)
 	{

@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 09:37:06 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:44:39 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,10 @@ void	print_message(char *str, t_philo *philo, int id)
 /* Bugless usleep in miliseconds */
 void	ft_usleep(int ms)
 {
-	size_t	start;
 
-	start = get_time();
-	while (get_time() < start + ms)
+	size_t	finish;
+
+	finish = get_time() + ms;
+	while (get_time() < finish)
 		usleep(1);
 }

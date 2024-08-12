@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/07/17 14:46:06 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:09:47 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ int	everyone_ate(t_philo *philos, int n_philos)
 	}
 	if (meals == n_philos)
 	{
+		pthread_mutex_lock(&philos->data->table_mutex);
+		philos->data->dinner_ended = 1;
+		pthread_mutex_unlock(&philos->data->table_mutex);
 		pthread_mutex_lock(&philos->data->print_mutex);
 		printf("Every philosopher eat at least %d times\n",
 			(int)philos->data->times_philo_must_eat);

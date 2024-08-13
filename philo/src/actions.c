@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:29:15 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/08/12 18:03:39 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:12:28 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->n_meals++;
 	pthread_mutex_unlock(&philo->meal_mutex);
-	if (is_dead(philo))
-		return;
 	pthread_mutex_unlock(l_fork);
 	pthread_mutex_unlock(r_fork);
 }

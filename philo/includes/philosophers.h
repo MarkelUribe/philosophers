@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:34 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/06/20 13:38:13 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:10:02 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	table_mutex;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	death_mutex;
 }	t_data;
 
 typedef struct s_philo

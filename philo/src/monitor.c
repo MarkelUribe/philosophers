@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/08/12 16:09:47 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:18:14 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,25 @@ int	dinner_ended(t_data *data)
 /* Checks if this philo is dead */
 int	is_dead(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->meal_mutex);
+	pthread_mutex_lock(&philo->data->death_mutex);
 	if (philo->dead || dinner_ended(philo->data))
-		return (pthread_mutex_unlock(&philo->meal_mutex), 1);
+	{
+		pthread_mutex_unlock(&philo->data->death_mutex);
+		return (1);
+	}
 	else if (get_time() - philo->last_meal >= philo->data->time_to_die)
 	{
 		philo->dead = 1;
-		print_message(ADMIN"died"RESET, philo, philo->id);
+		print_message(ADMIN"Died of hunger"RESET, philo, philo->id);
 		pthread_mutex_lock(&philo->data->table_mutex);
 		print_message("Dinner finished", philo, 0);
 		philo->data->dinner_ended = 1;
 		pthread_mutex_unlock(&philo->data->table_mutex);
-		return (pthread_mutex_unlock(&philo->meal_mutex), 1);
+		pthread_mutex_unlock(&philo->data->death_mutex);
+		return (1);
 	}
-	return (pthread_mutex_unlock(&philo->meal_mutex), 0);
+	pthread_mutex_unlock(&philo->data->death_mutex);
+	return (0);
 }
 
 /* Returns 1 if every philo ate the specified minimum amount by parameter */

@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/08/12 18:44:39 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:55:38 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,20 @@ void	print_message(char *str, t_philo *philo, int id)
 	size_t	time;
 
 	pthread_mutex_lock(&philo->data->print_mutex);
-	time = get_time() - philo->data->start_time;
-	if (id == 0)
-		printf("|%zu|\t%s\n", time, str);
-	else
-		printf("|%zu|\t%d %s\n", time, id, str);
+	if (!philo->data->dinner_ended)
+	{
+		time = get_time() - philo->data->start_time;
+		if (id == 0)
+			printf("|%zu|\t%s\n", time, str);
+		else
+			printf("|%zu|\t%d %s\n", time, id, str);
+	}
 	pthread_mutex_unlock(&philo->data->print_mutex);
 }
 
 /* Bugless usleep in miliseconds */
 void	ft_usleep(int ms)
 {
-
 	size_t	finish;
 
 	finish = get_time() + ms;

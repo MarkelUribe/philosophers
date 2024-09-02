@@ -6,7 +6,7 @@
 #    By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 13:01:36 by muribe-l          #+#    #+#              #
-#    Updated: 2024/08/28 13:21:17 by muribe-l         ###   ########.fr        #
+#    Updated: 2024/09/02 19:08:06 by muribe-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJECTS = $(patsubst %.c,$(ODIR)/%.o,$(SOURCES))
 
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror# -g3 -fsanitize=address
 RM = rm -rf
 
 $(ODIR)/%.o: $(SDIR)%.c

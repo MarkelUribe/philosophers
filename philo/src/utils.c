@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/08/13 15:55:38 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:24:46 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,5 @@ void	ft_usleep(int ms)
 
 	finish = get_time() + ms;
 	while (get_time() < finish)
-		usleep(1);
+		usleep(ms * 1000);
 }

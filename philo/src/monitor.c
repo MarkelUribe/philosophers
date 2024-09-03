@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/02 19:41:20 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:38:06 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,18 @@ int	is_anyone_dead(t_philo *philos)
 	{
 		if (get_time() - philos[i].last_meal >= data->time_to_die)
 		{
-			kill_all(philos);
 			print_message(ADMIN"Died of hunger"RESET, &philos[i], philos[i].id);
 			pthread_mutex_lock(&data->table_mutex);
 			print_message("Dinner finished", &philos[i], 0);
 			data->dinner_ended = 1;
+			kill_all(philos);
 			return (pthread_mutex_unlock(&data->table_mutex), 1);
 		}
 	}
 	return (0);
 }
 
-/* Returns 1 if every philo ate the specified minimum amount by parameter */
+/* Returns 1 if every philo ate the specified minimum amount by the parameter */
 int	everyone_ate(t_philo *philos, int n_philos)
 {
 	int	i;
@@ -87,9 +87,7 @@ void	*monitor(void *philos)
 	p = (t_philo *)philos;
 	while (1)
 	{
-		if (everyone_ate(p, p->data->n_philo))
-			break ;
-		if (is_anyone_dead(p))
+		if (is_anyone_dead(p) || everyone_ate(p, p->data->n_philo))
 			break ;
 	}
 	return (philos);

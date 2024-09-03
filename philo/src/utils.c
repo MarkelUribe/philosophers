@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:20:42 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/03 13:35:29 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 15:20:45 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	print_message(char *str, t_philo *philo, int id)
 	{
 		time = get_time() - philo->data->start_time;
 		if (id == 0)
-			printf("|%zu|\t%s\n", time, str);
+			printf("%zu %s\n", time, str);
 		else
-			printf("|%zu|\t%d %s\n", time, id, str);
+			printf("%zu %d %s\n", time, id, str);
 	}
 	pthread_mutex_unlock(&philo->data->table_mutex);
 	pthread_mutex_unlock(&philo->data->print_mutex);

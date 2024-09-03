@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/03 12:38:06 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:08:46 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ int	is_anyone_dead(t_philo *philos)
 	{
 		if (get_time() - philos[i].last_meal >= data->time_to_die)
 		{
-			print_message(ADMIN"Died of hunger"RESET, &philos[i], philos[i].id);
+			print_message(ADMIN"died"RESET, &philos[i], philos[i].id);
 			pthread_mutex_lock(&data->table_mutex);
-			print_message("Dinner finished", &philos[i], 0);
 			data->dinner_ended = 1;
 			kill_all(philos);
 			return (pthread_mutex_unlock(&data->table_mutex), 1);

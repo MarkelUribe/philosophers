@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:29:15 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/03 12:39:10 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:07:00 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal = get_time();
 	pthread_mutex_unlock(&philo->meal_mutex);
-	print_message("eating", philo, philo->id);
+	print_message("is eating", philo, philo->id);
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->n_meals++;
 	pthread_mutex_unlock(&philo->meal_mutex);

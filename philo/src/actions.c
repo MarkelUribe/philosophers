@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 13:29:15 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/03 17:14:47 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:22:04 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@ int	am_i_dead(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->death_mutex);
 	if (philo->dead)
-		return (pthread_mutex_unlock(&philo->data->death_mutex), 1);
+	{
+		pthread_mutex_unlock(&philo->data->death_mutex);
+		ft_usleep(15);
+		return (1);
+	}
 	return (pthread_mutex_unlock(&philo->data->death_mutex), 0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:48:08 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/03 12:32:45 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:03:53 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ static void	init_forks(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->n_philo)
+	i = -1;
+	while (++i < data->n_philo)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 			destroy_data("Mutex init error", data);
-		i++;
 	}
 }
 

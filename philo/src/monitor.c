@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/03 13:08:46 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 13:44:26 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,17 @@ int	is_anyone_dead(t_philo *philos)
 	i = -1;
 	while (++i < data->n_philo)
 	{
+		pthread_mutex_lock(&philos[i].meal_mutex);
 		if (get_time() - philos[i].last_meal >= data->time_to_die)
 		{
 			print_message(ADMIN"died"RESET, &philos[i], philos[i].id);
-			pthread_mutex_lock(&data->table_mutex);
+			pthread_mutex_lock(&philos->data->table_mutex);
 			data->dinner_ended = 1;
+			pthread_mutex_unlock(&philos->data->table_mutex);
 			kill_all(philos);
-			return (pthread_mutex_unlock(&data->table_mutex), 1);
+			return (pthread_mutex_unlock(&philos[i].meal_mutex), 1);
 		}
+		pthread_mutex_unlock(&philos[i].meal_mutex);
 	}
 	return (0);
 }
@@ -60,8 +63,9 @@ int	everyone_ate(t_philo *philos, int n_philos)
 	meals = 0;
 	while (++i < n_philos)
 	{
-		if (philos[i].n_meals >= (int)philos->data->times_philo_must_eat)
-			meals++;
+		pthread_mutex_lock(&philos[i].meal_mutex);
+		meals += philos[i].n_meals >= (int)philos->data->times_philo_must_eat;
+		pthread_mutex_unlock(&philos[i].meal_mutex);
 	}
 	if (meals == n_philos)
 	{
@@ -71,7 +75,6 @@ int	everyone_ate(t_philo *philos, int n_philos)
 		pthread_mutex_lock(&philos->data->print_mutex);
 		printf("Every philosopher eat at least %d times\n",
 			(int)philos->data->times_philo_must_eat);
-		philos->data->dinner_ended = 1;
 		pthread_mutex_unlock(&philos->data->print_mutex);
 		return (kill_all(philos), 1);
 	}

@@ -6,7 +6,7 @@
 /*   By: muribe-l <muribe-l@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:28:25 by muribe-l          #+#    #+#             */
-/*   Updated: 2024/09/03 17:15:01 by muribe-l         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:25:05 by muribe-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	*monitor(void *philos)
 	{
 		if (is_anyone_dead(p) || everyone_ate(p, p->data->n_philo))
 			break ;
-		usleep(1000);
+		ft_usleep(5);
 	}
 	return (philos);
 }
